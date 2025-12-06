@@ -1,0 +1,152 @@
+---
+title: API Reference
+description: Complete reference for Ismet Dilekci Documentation API endpoints and authentication
+---
+
+## Authentication
+
+All API requests require authentication using Bearer tokens. Obtain your API key from the dashboard.
+
+<ParamField header="Authorization" param-type="string" required="true">
+  Bearer token obtained from your account settings.
+</ParamField>
+
+<ParamField header="Content-Type" param-type="string" required="false">
+  Set to `application/json` for POST/PUT requests.
+</ParamField>
+
+<Callout kind="info">
+  Keep your API key secure and never expose it in client-side code.
+</Callout>
+
+## Core Endpoints
+
+Our REST API provides programmatic access to all documentation features.
+
+<Tabs>
+  <Tab title="Projects" icon="folder">
+    Manage documentation projects and workspaces.
+    
+    <Request tabs="Create Project,List Projects" show-lines="true">
+      ```javascript
+const response = await fetch('/api/v1/projects', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: 'New Project',
+    description: 'A sample documentation project'
+  })
+});
+const project = await response.json();
+```
+      ```javascript
+const response = await fetch('/api/v1/projects', {
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY'
+  }
+});
+const projects = await response.json();
+```
+    </Request>
+  </Tab>
+  <Tab title="Documents" icon="file-text">
+    Create, update, and manage individual documents.
+  </Tab>
+</Tabs>
+
+<Steps>
+  <Step title="Authenticate" icon="key">
+    Include your Bearer token in all requests.
+  </Step>
+  <Step title="Choose Endpoint" icon="target">
+    Select the appropriate API endpoint for your operation.
+  </Step>
+  <Step title="Handle Response" icon="check-circle">
+    Process the JSON response and handle errors appropriately.
+  </Step>
+</Steps>
+
+<Expandable title="Error Handling" default-open="false">
+  All API errors return standard HTTP status codes with JSON error messages.
+  
+  | Status Code | Description |
+  |-------------|-------------|
+  | 400 | Bad Request - Invalid parameters |
+  | 401 | Unauthorized - Invalid API key |
+  | 403 | Forbidden - Insufficient permissions |
+  | 404 | Not Found - Resource doesn't exist |
+  | 500 | Internal Server Error - Server issue |
+</Expandable>
+
+<CodeGroup tabs="JavaScript,Python,cURL">
+  ```javascript
+// Error handling example
+try {
+  const response = await fetch('/api/v1/projects', {
+    headers: {
+      'Authorization': 'Bearer YOUR_API_KEY'
+    }
+  });
+  
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(`API Error: ${error.message}`);
+  }
+  
+  const projects = await response.json();
+  console.log('Projects:', projects);
+} catch (error) {
+  console.error('Request failed:', error.message);
+}
+```
+  ```python
+import requests
+
+try:
+    response = requests.get('/api/v1/projects', 
+                           headers={'Authorization': 'Bearer YOUR_API_KEY'})
+    response.raise_for_status()
+    projects = response.json()
+    print('Projects:', projects)
+except requests.exceptions.RequestException as e:
+    print('Request failed:', str(e))
+```
+  ```bash
+curl -H "Authorization: Bearer YOUR_API_KEY" \
+     https://api.ismetdocs.com/v1/projects
+```
+</CodeGroup>
+
+<Callout kind="tip">
+  Use our SDK libraries for simplified integration in popular programming languages.
+</Callout>
+
+## Rate Limits
+
+API requests are limited to 1000 per hour per API key. Rate limit headers are included in responses.
+
+<ResponseField name="X-RateLimit-Limit" field-type="integer" required="true">
+  Maximum requests allowed per hour.
+</ResponseField>
+
+<ResponseField name="X-RateLimit-Remaining" field-type="integer" required="true">
+  Remaining requests in current window.
+</ResponseField>
+
+<ResponseField name="X-RateLimit-Reset" field-type="integer" required="true">
+  Unix timestamp when limit resets.
+</ResponseField>
+
+<ExpandableGroup>
+  <Expandable title="Pagination" default-open="false">
+    Large result sets are paginated with cursor-based navigation.
+  </Expandable>
+  <Expandable title="Webhooks" default-open="false">
+    Subscribe to events for real-time updates.
+  </Expandable>
+</ExpandableGroup>
+
+Our comprehensive API enables full automation of your documentation workflow. Start building integrations today.

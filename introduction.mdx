@@ -1,0 +1,103 @@
+---
+title: Introduction
+description: Overview of Ismet Dilekci Documentation and its core capabilities
+---
+
+## Getting Started
+
+Ismet Dilekci Documentation provides a comprehensive platform for organizing, managing, and sharing project documentation. Whether you're documenting APIs, user guides, or technical specifications, our tool offers intuitive features to streamline your workflow. Get started quickly with our user-friendly interface and powerful collaboration tools.
+
+<Columns cols={3}>
+  <Card title="Easy Setup" icon="rocket" href="/docs/getting-started">
+    Launch your documentation space in minutes with our guided setup process.
+  </Card>
+  <Card title="API Integration" icon="code" href="/docs/api-reference">
+    Connect your projects with our REST API for seamless automation.
+  </Card>
+  <Card title="Collaboration" icon="users" href="/docs/collaboration">
+    Work together with your team using real-time editing and commenting.
+  </Card>
+</Columns>
+
+## Key Features
+
+Our documentation platform includes advanced features designed for modern development teams. From version control to search capabilities, we provide everything you need to maintain high-quality documentation.
+
+<Tabs>
+  <Tab title="Version Control" icon="git-branch">
+    Track changes and collaborate effectively with built-in version history.
+    
+    <Steps>
+      <Step title="Create Repository" icon="plus">
+        Set up a new documentation repository for your project.
+        ````bash
+        curl -X POST https://api.ismetdocs.com/v1/repositories \
+          -H "Authorization: Bearer YOUR_API_KEY" \
+          -H "Content-Type: application/json" \
+          -d '{"name": "my-project-docs", "description": "Documentation for my project"}'
+        ````
+      </Step>
+      <Step title="Add Content" icon="file-text">
+        Upload your markdown files and organize them into sections.
+      </Step>
+      <Step title="Publish" icon="upload">
+        Make your documentation live with one-click publishing.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Search & Discovery" icon="search">
+    Find information quickly with our powerful search engine.
+    
+    <Expandable title="Advanced Search Tips" default-open="false">
+      Use operators like `AND`, `OR`, and quotes for exact phrases to refine your searches.
+    </Expandable>
+  </Tab>
+</Tabs>
+
+<Callout kind="info">
+  Tip: Start with our getting started guide to explore all available features.
+</Callout>
+
+## Use Cases
+
+Whether you're a solo developer or part of a large team, Ismet Dilekci Documentation adapts to your needs. Here are some common scenarios where our platform excels.
+
+<ExpandableGroup>
+  <Expandable title="API Documentation" default-open="true">
+    Document your REST APIs with interactive examples and automatic validation.
+    
+    <CodeGroup tabs="JavaScript,Python">
+      ```javascript
+const response = await fetch('/api/v1/projects', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY',
+    'Content-Type': 'application/json'
+  }
+});
+const projects = await response.json();
+console.log(projects);
+```
+      ```python
+import requests
+
+response = requests.get('/api/v1/projects', 
+                       headers={'Authorization': 'Bearer YOUR_API_KEY'})
+projects = response.json()
+print(projects)
+```
+    </CodeGroup>
+  </Expandable>
+  <Expandable title="Team Collaboration" default-open="false">
+    Share documentation with stakeholders and collaborate in real-time.
+  </Expandable>
+  <Expandable title="Knowledge Base" default-open="false">
+    Build comprehensive knowledge bases for your organization.
+  </Expandable>
+</ExpandableGroup>
+
+<Callout kind="tip">
+  Pro tip: Use templates to maintain consistency across your documentation.
+</Callout>
+
+Our platform supports over 50 file formats and integrates with popular tools like GitHub, Slack, and Jira. With enterprise-grade security and 99.9% uptime, you can trust Ismet Dilekci Documentation for your critical documentation needs.

@@ -1,0 +1,127 @@
+---
+title: Getting Started
+description: Step-by-step guide to set up and configure your Ismet Dilekci Documentation space
+---
+
+## Quick Setup
+
+Getting started with Ismet Dilekci Documentation is straightforward. Follow these steps to have your documentation space up and running in under 10 minutes.
+
+<Steps>
+  <Step title="Sign Up" icon="user">
+    Create your free account at docs.ismetdilekci.com.
+    
+    <CodeGroup tabs="cURL,Bash">
+      ```bash
+curl -X POST https://api.ismetdocs.com/v1/auth/signup \
+  -H "Content-Type: application/json" \
+  -d '{"email": "your@email.com", "password": "securepassword123"}'
+```
+      ```bash
+echo '{"email": "your@email.com", "password": "securepassword123"}' | \
+  curl -X POST https://api.ismetdocs.com/v1/auth/signup \
+    -H "Content-Type: application/json" \
+    -d @-
+```
+    </CodeGroup>
+  </Step>
+  <Step title="Create Workspace" icon="folder">
+    Set up your first workspace and invite team members.
+  </Step>
+  <Step title="Import Content" icon="upload">
+    Upload existing documentation or start fresh with our templates.
+  </Step>
+  <Step title="Customize" icon="settings">
+    Configure branding, permissions, and integrations.
+  </Step>
+</Steps>
+
+<Callout kind="info">
+  Need help? Our support team is available 24/7 via chat or email.
+</Callout>
+
+## Configuration Options
+
+Customize your documentation space to match your organization's needs and branding.
+
+<Tabs>
+  <Tab title="Branding" icon="palette">
+    Set up your logo, colors, and domain.
+    
+    <Expandable title="Custom Domain Setup" default-open="false">
+      Point your custom domain to our servers for a branded experience.
+    </Expandable>
+  </Tab>
+  <Tab title="Permissions" icon="lock">
+    Control who can view, edit, and publish documentation.
+    
+    <Expandable title="Role-Based Access" default-open="false">
+      Assign roles like Admin, Editor, and Viewer to team members.
+    </Expandable>
+  </Tab>
+  <Tab title="Integrations" icon="plug">
+    Connect with tools like GitHub, Slack, and Jira.
+  </Tab>
+</Tabs>
+
+<Columns cols={2}>
+  <Card title="GitHub Integration" icon="github" href="#">
+    Sync your repositories and automate documentation updates.
+  </Card>
+  <Card title="Slack Notifications" icon="message-square" href="#">
+    Get notified about documentation changes in real-time.
+  </Card>
+</Columns>
+
+<Callout kind="danger">
+  Important: Always use strong passwords and enable two-factor authentication for security.
+</Callout>
+
+## Best Practices
+
+Follow these guidelines to make the most of your documentation platform.
+
+<ExpandableGroup>
+  <Expandable title="Content Organization" default-open="true">
+    Structure your documentation with clear hierarchies and consistent naming.
+  </Expandable>
+  <Expandable title="Version Control" default-open="false">
+    Use branches for major updates and keep a clean commit history.
+  </Expandable>
+  <Expandable title="Collaboration" default-open="false">
+    Set up review processes and use comments for feedback.
+  </Expandable>
+</ExpandableGroup>
+
+<CodeGroup tabs="Markdown,JSON">
+  ```markdown
+# Project Documentation
+
+## Overview
+This project provides...
+
+## API Reference
+- GET /api/v1/projects
+- POST /api/v1/projects
+```
+  ```json
+{
+  "title": "Project Documentation",
+  "sections": [
+    {
+      "name": "Overview",
+      "content": "This project provides..."
+    },
+    {
+      "name": "API Reference",
+      "endpoints": [
+        "GET /api/v1/projects",
+        "POST /api/v1/projects"
+      ]
+    }
+  ]
+}
+```
+</CodeGroup>
+
+With these steps, you'll have a fully functional documentation space ready for your team. Explore our advanced features as your needs grow.

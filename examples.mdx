@@ -1,0 +1,160 @@
+---
+title: Examples
+description: Practical examples and code snippets for common Ismet Dilekci Documentation use cases
+---
+
+## Quick Examples
+
+Get up and running quickly with these practical examples covering common documentation scenarios.
+
+<Tabs>
+  <Tab title="Project Setup" icon="folder">
+    Create and configure a new documentation project.
+    
+    <Steps>
+      <Step title="Initialize Project" icon="plus">
+        Set up a new project with basic structure.
+        
+        <CodeGroup tabs="CLI,API">
+          ```bash
+ismet docs init my-project
+cd my-project
+ismet docs config --name "My Project Docs" --description "Documentation for my awesome project"
+```
+          ```javascript
+const project = await createProject({
+  name: 'My Project Docs',
+  description: 'Documentation for my awesome project',
+  template: 'api-reference'
+});
+```
+        </CodeGroup>
+      </Step>
+      <Step title="Add Content" icon="file-text">
+        Import existing documentation or create new pages.
+      </Step>
+      <Step title="Configure Access" icon="users">
+        Set up team permissions and sharing.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="API Documentation" icon="code">
+    Document REST APIs with interactive examples.
+  </Tab>
+  <Tab title="Team Collaboration" icon="users">
+    Set up collaborative workflows and reviews.
+  </Tab>
+</Tabs>
+
+<Callout kind="tip">
+  Use our CLI tool for faster project setup and management.
+</Callout>
+
+## Integration Examples
+
+Connect your documentation with popular development tools and platforms.
+
+<Columns cols={3}>
+  <Card title="GitHub" icon="github" href="#">
+    Sync repositories and automate documentation updates.
+  </Card>
+  <Card title="Slack" icon="message-square" href="#">
+    Receive notifications and collaborate in channels.
+  </Card>
+  <Card title="Jira" icon="book" href="#">
+    Link documentation to project tickets.
+  </Card>
+</Columns>
+
+<ExpandableGroup>
+  <Expandable title="GitHub Integration" default-open="true">
+    Automatically sync documentation with your GitHub repositories.
+    
+    <CodeGroup tabs="Webhook,CLI">
+      ```javascript
+// GitHub webhook handler
+const handlePush = async (payload) => {
+  if (payload.ref === 'refs/heads/main') {
+    await updateDocumentation({
+      repo: payload.repository.name,
+      files: payload.commits[0].modified
+    });
+  }
+};
+```
+      ```bash
+git remote add docs https://docs.ismetdilekci.com/my-project.git
+
+echo "docs/*" >> .gitignore
+
+git add .
+git commit -m "Add documentation sync"
+git push docs main
+```
+    </CodeGroup>
+  </Expandable>
+  <Expandable title="Slack Integration" default-open="false">
+    Get notified about documentation changes in your Slack channels.
+  </Expandable>
+  <Expandable title="CI/CD Pipeline" default-open="false">
+    Integrate documentation checks into your deployment pipeline.
+  </Expandable>
+</ExpandableGroup>
+
+<CodeGroup tabs="GitHub Actions,Jenkins">
+  ```yaml
+# .github/workflows/docs.yml
+name: Update Documentation
+on:
+  push:
+    branches: [ main ]
+    paths: [ 'docs/**' ]
+
+jobs:
+  update-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Sync to Ismet Docs
+        run: |
+          curl -X POST https://api.ismetdocs.com/v1/sync \
+            -H "Authorization: Bearer ${{ secrets.DOCS_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{"repo": "my-project", "branch": "main"}'
+```
+  ```groovy
+// Jenkins pipeline
+pipeline {
+    agent any
+    stages {
+        stage('Update Docs') {
+            steps {
+                sh '''
+                    curl -X POST https://api.ismetdocs.com/v1/sync \
+                      -H "Authorization: Bearer $DOCS_API_KEY" \
+                      -H "Content-Type: application/json" \
+                      -d '{"repo": "my-project", "branch": "main"}'
+                '''
+            }
+        }
+    }
+}
+```
+</CodeGroup>
+
+<Callout kind="success">
+  Success: These examples demonstrate how to integrate Ismet Documentation into your existing workflow.
+</Callout>
+
+<Expandable title="Advanced Examples" default-open="false">
+  Explore complex use cases and custom integrations.
+  
+  | Use Case | Difficulty | Time |
+  |----------|------------|------|
+  | Basic setup | Easy | 5 min |
+  | API integration | Medium | 15 min |
+  | Custom webhooks | Hard | 30 min |
+  | Multi-repo sync | Hard | 45 min |
+</Expandable>
+
+These examples provide a solid foundation for implementing Ismet Dilekci Documentation in your projects. Start with the basics and expand as needed.

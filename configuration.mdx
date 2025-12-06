@@ -1,0 +1,137 @@
+---
+title: Configuration
+description: Advanced configuration options and settings for customizing your documentation experience
+---
+
+## Basic Settings
+
+Configure your documentation space with essential settings that affect the overall behavior and appearance.
+
+<Tabs>
+  <Tab title="General" icon="settings">
+    Basic workspace configuration and preferences.
+    
+    <Expandable title="Workspace Settings" default-open="true">
+      Set your workspace name, description, and default language.
+    </Expandable>
+  </Tab>
+  <Tab title="Appearance" icon="palette">
+    Customize the look and feel of your documentation.
+  </Tab>
+  <Tab title="Security" icon="shield">
+    Manage access controls and security settings.
+  </Tab>
+</Tabs>
+
+<Columns cols={2}>
+  <Card title="Theme Customization" icon="sun" href="#">
+    Choose between light and dark themes or create custom color schemes.
+  </Card>
+  <Card title="Domain Settings" icon="globe" href="#">
+    Configure custom domains and SSL certificates.
+  </Card>
+</Columns>
+
+<Callout kind="info">
+  Configuration changes take effect immediately for most settings.
+</Callout>
+
+## Advanced Configuration
+
+For power users, we offer advanced configuration options to fine-tune your documentation platform.
+
+<Steps>
+  <Step title="Access Admin Panel" icon="settings">
+    Navigate to Settings > Advanced in your dashboard.
+  </Step>
+  <Step title="Review Options" icon="eye">
+    Carefully review available configuration options.
+  </Step>
+  <Step title="Apply Changes" icon="check">
+    Save your changes and monitor for any issues.
+  </Step>
+  <Step title="Test Thoroughly" icon="test-tube">
+    Test all functionality after configuration changes.
+  </Step>
+</Steps>
+
+<ExpandableGroup>
+  <Expandable title="Environment Variables" default-open="false">
+    Set environment-specific configuration through variables.
+    
+    <CodeGroup tabs="Bash,Docker">
+      ```bash
+export ISM_DOCS_API_KEY="your_api_key_here"
+export ISM_DOCS_BASE_URL="https://api.ismetdocs.com"
+```
+      ```bash
+# Dockerfile
+ENV ISM_DOCS_API_KEY=your_api_key_here
+ENV ISM_DOCS_BASE_URL=https://api.ismetdocs.com
+```
+    </CodeGroup>
+  </Expandable>
+  <Expandable title="Custom Integrations" default-open="false">
+    Build custom integrations using our webhook system.
+  </Expandable>
+  <Expandable title="Performance Tuning" default-open="false">
+    Optimize for high-traffic scenarios.
+  </Expandable>
+</ExpandableGroup>
+
+<CodeGroup tabs="YAML,JSON">
+  ```yaml
+# config.yaml
+workspace:
+  name: "My Documentation"
+  theme: "dark"
+  features:
+    - search
+    - comments
+    - versioning
+
+api:
+  rate_limit: 1000
+  timeout: 30
+
+integrations:
+  github:
+    enabled: true
+    token: "${GITHUB_TOKEN}"
+```
+  ```json
+{
+  "workspace": {
+    "name": "My Documentation",
+    "theme": "dark",
+    "features": ["search", "comments", "versioning"]
+  },
+  "api": {
+    "rate_limit": 1000,
+    "timeout": 30
+  },
+  "integrations": {
+    "github": {
+      "enabled": true,
+      "token": "${GITHUB_TOKEN}"
+    }
+  }
+}
+```
+</CodeGroup>
+
+<Callout kind="danger">
+  Warning: Some advanced settings can affect performance. Make changes in a staging environment first.
+</Callout>
+
+<Expandable title="Troubleshooting" default-open="false">
+  Common configuration issues and their solutions.
+  
+  | Issue | Solution |
+  |-------|----------|
+  | Theme not applying | Clear browser cache and reload |
+  | API timeouts | Increase timeout value in config |
+  | Integration failures | Verify API keys and permissions |
+</Expandable>
+
+Our flexible configuration system allows you to tailor the platform to your specific needs while maintaining ease of use.
